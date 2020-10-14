@@ -4,20 +4,19 @@ window.crearBaseDatos();
 $(function () {
 
 
-    $('#form_login').submit(function (e) {
+    $('#frmlogin').submit(function (e) {
 
-        const usu = $('#username').val();
-        const pass = $('#password').val();
-
+        const usu = $('#usuarioInput').val();
+        const pass = $('#passInput').val();
         sql = 'SELECT *, rowid FROM users WHERE usuario=? and password=?';
         window.query(sql, [usu, pass]).then(function (result) {
-
+            
             if (result.length > 0) {
 
                 const usuario = result[0]
                 localStorage.setItem('usuario', JSON.stringify(usuario));
 
-                window.location.href = '../../'
+                window.location.href = '../../index.html'
 
             } else {
                 toastr.error('Usuario incorrecto ')
@@ -31,7 +30,7 @@ $(function () {
     })
 
 
-    sql = 'SELECT *, rowid FROM users WHERE  usuario="admin" and password="123" '
+    sql = 'SELECT *, rowid FROM users'
     window.query(sql).then(function (result) {
 
 
