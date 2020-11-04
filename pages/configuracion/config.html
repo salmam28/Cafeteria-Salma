@@ -3,11 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | ChartJS</title>
+    <title>Salma</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -15,6 +14,7 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="../../plugins/toastr/toastr.css">
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     
   </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -59,7 +59,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img  alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -75,7 +75,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img  alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -91,7 +91,7 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img  alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -190,11 +190,11 @@
             <!--*******************************-->
             <div class="row">
                 <div  class="col-12" >
-                  <form id="formcrear">
+                  <form id="formEditar">
                       <div class="form-group row">
-                        <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
+                        <label  class="col-sm-2 col-form-label">Nombre</label>
                         <div class="col-sm-10">
-                          <input type="text"  class="form-control" id="inputnombre" >
+                          <input type="text"  class="form-control" id="inputnombreEdit" >
                         </div>
                       </div>
                       <div class="form-group row">
@@ -211,21 +211,31 @@
                       <div class="form-group row">
                         <label for="inputtipo" class="col-sm-2 col-form-label">Tipo</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputtipo">
+                          <input type="text" class="form-control" id="inputtipoEdit">
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="inputusuario" class="col-sm-2 col-form-label">Usuario</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputusuario">
+                          <input type="text" class="form-control" id="inputusuarioEdit">
                         </div>
                       </div>
-                      <div class="form-group row">
+                      <div class="form-group  row">
                         <label for="inputpassword" class="col-sm-2 col-form-label">Contraseña</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputpassword">
+                          <div class="input-group mb-3">
+                            <input id="inputpassword" type="password" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+                            <div class="input-group-append">
+                              <button id='btn-verpass' class="btn btn-outline-secondary" type="button">
+                                <i class="fas fa-eye"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
+                      
+                      <input type="submit" class='btn btn-primary' value="Guardar" id="btnGuardarcrear" >
                     </form> 
                 </div>
             </div>
@@ -269,9 +279,9 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script src="../../plugins/toastr/toastr.min.js"></script>
-<script src="../../plugins/popper/popper.min.js"></script>
 <script src="../../build/js/ConexionServ.js"></script>
-<script src="usuarios.js"></script>
 <script src="../contenidos/menu-lateral.js"></script>
+<script src="config.js"></script>
+
 </body>
 </html>

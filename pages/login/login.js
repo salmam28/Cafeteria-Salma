@@ -3,6 +3,10 @@ window.crearBaseDatos();
 //Traemos todos los usuarios para verificar existentes
 $(function () {
 
+    $('#btn-verpass').click(function () {
+        const tipo = $("#passInput").attr('type');
+        $("#passInput").attr('type', (tipo == 'text' ? 'password':'text'));
+    })
 
     $('#frmlogin').submit(function (e) {
 

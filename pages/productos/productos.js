@@ -16,9 +16,10 @@ $(document).ready(
 
                 window.query(sql, [codi]).then(function (result) {
                     fila.remove();
+                    toastr.success('Eliminado correctamente')
                     console.log('Eliminado correctamente');
                 }, function (error) {
-                    console.log('Error eliminando...', error);
+                    toastr.error('Error eliminando...', error);
                 })
 
             }
@@ -56,6 +57,7 @@ $(document).ready(
 
             }
         }, function (error) {
+            toastr.error('No se pudo ingresar dato')
             console.log('Dato ingresado', error);
         })
 
@@ -94,7 +96,7 @@ $(document).ready(
             sql = 'UPDATE productos SET nombre=?,abreviatura=?,precio=?,costo=?,descripcion=?,proveedor=? WHERE rowid=? ';
 
             window.query(sql, [a, b, c, d, e, f,fila_editantdo.data('id')]).then(function (result) {
-
+                toastr.success('Producto editado');
                 fila_editantdo.find('.td-nombre').text(a);
                 fila_editantdo.find('.td-abreviatura').text(b);
                 fila_editantdo.find('.td-precio').text(c);
@@ -105,6 +107,7 @@ $(document).ready(
                 $('#conten-editar').hide();
                 
             }, function (error) {
+                toastr.error('No se pudo ingresar dato');
                 console.log('Dato ingresado', error);
             })
 
@@ -147,7 +150,7 @@ $(document).ready(
             sql = 'INSERT INTO productos(nombre,abreviatura,precio,costo,descripcion,proveedor)VALUES(?,?,?,?,?,?)';
 
             window.query(sql, [a, b, c, d, e, f]).then(function (result) {
-                alert('Producto creado con éxito')
+                toastr.success('Producto creado con éxito');
 
                 $('table tbody').append(
                     "<tr id='fila-" + result.insertId + "'data-id='" + result.insertId + "'>\
@@ -174,6 +177,7 @@ $(document).ready(
                 $('#conten-crear').hide();
 
             }, function (error) {
+                toastr.error('No se pudo ingresar dato')
                 console.log('Dato ingresado', error);
             })
 

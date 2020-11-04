@@ -21,7 +21,7 @@ $(document).ready(
                     toastr.success('Eliminado correctamente')
                     console.log('Eliminado correctamente');
                 }, function (error) {
-                    console.log('Error eliminando...', error);
+                    toastr.error('Error eliminando...', error);
                 })
 
             }
@@ -102,7 +102,7 @@ $(document).ready(
             sql = 'UPDATE users SET nombres=?,sexo=?,tipo=?,usuario=?,password=? WHERE rowid=? ';
 
             window.query(sql, [a, b, c, d, e,fila_editantdo.data('id')]).then(function (result) {
-
+                toastr.success('Usuario editado');
                 fila_editantdo.find('.td-nombre').text(a);
                 fila_editantdo.find('.td-sexo').text(b);
                 fila_editantdo.find('.td-tipo').text(c);
@@ -153,8 +153,7 @@ $(document).ready(
             sql = 'INSERT INTO users(nombres,sexo,tipo,usuario,password)VALUES(?,?,?,?,?)';
 
             window.query(sql, [a, b, c, d, e]).then(function (result) {
-                alert('Usuario creado con éxito')
-                console.log('Dato ingresado', result);
+                toastr.success('Usuario creado con éxito');
 
                 $('table tbody').append(
                     "<tr id='fila-" + result.insertId + "'data-id='" + result.insertId + "'>\
