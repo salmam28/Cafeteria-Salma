@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <link rel="stylesheet" href="../../plugins/toastr/toastr.css">
     <link rel="stylesheet" href="./typeahead.css">
+    <link rel="stylesheet" href="./informes.css">
 
     <style>
         #ListaProductosSeleccionados li {
@@ -191,7 +192,7 @@
                             <!-- AREA CHART -->
                             <div class="card card-primary">
                                 <div class="card-header">
-                                    <h3 class="card-title">Ventas</h3>
+                                    <h3 class="card-title">Informes</h3>
                                     <div class="card-tools">
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                             <i class="fas fa-minus"></i>
@@ -200,98 +201,10 @@
                                             <i class="fas fa-times"></i></button>
                                     </div>
                                 </div>
-                                <div class="card-body" > 
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <form id="formbuscarclientes">
-                                                <div class="form-group row">
-                                                    <label for="inputnombre" class="col-sm-2 col-form-label">Busca
-                                                        cliente</label>
-                                                    <div class="col-sm-10" id="buscarNombre">
-                                                        <input class="typeahead" type="text" class="form-control"
-                                                            placeholder="Cliente">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="" class="col-sm-2 col-form-label">Producto</label>
-                                                    <div class="col-sm-9">
-                                                        <select name="selectProductos" id="selectProductos" multiple
-                                                            class="form-control">
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="inputnombre" class="col-sm-2 col-form-label">Descripción</label>
-                                                    <div class="col-sm-9" id="descripcion">
-                                                        <input class="" type="text">
-                                                    </div>
-                                                    <div class="col-sm-1">
-                                                        <button type="button" id="btn-agregar-producto"
-                                                            class="btn btn-primary">Agregar</button>
-                                                    </div>
-                                                </div>
-                                                    
-                                                
-
-                                                <div id="todo_todo">
-
-                                                    <div class="row">
-                                                        <h5 class="col-sm-4">Productos a vender:</h5>
-                                                    </div>
-                                                    <div class="row" >
-                                                        <ul class="col-sm-12">
-                                                            <li class="row" style="text-align:justify; font-weight: bold;">
-                                                                <span class="col" class="list-group-item active">
-                                                                    Productos
-                                                                </span>
-                                                                <span class="col">
-                                                                    Cantidad
-                                                                </span>
-                                                                <span class="col">
-                                                                    Precio
-                                                                </span>
-                                                                <span class="col">
-                                                                    Total
-                                                                </span>
-                                                                <span class="col">
-    
-                                                                </span>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="col-sm-12" id="ListaProductosSeleccionados">
-                                                        </ul>
-                                                    </div>
-                                                        <div  class="row float-left" style="text-align:right; font-size: 17pt; font-weight: bold;">
-                                                            <div class="col-12">
-                                                                Total pagar
-                                                                <span id="totalPagar">$</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label for="dineroEntregado" class="col-9" style="text-align:right; font-size: 17pt;">
-                                                                Entrega
-                                                            </label>
-                                                            <input class="col-3 form-control" type="number" min="50" id="dineroEntregado">
-                                                        </div>
-                                                        <div class="row" style="text-align:right; font-size: 17pt; font-weight: bold;">
-                                                            <label  class="col-9" style="text-align:right; font-size: 17pt;">
-                                                                Devuelve: 
-                                                            </label>
-                                                            <span id="dineroDevuelta">$</span>
-                                                        </div>
-                                                        <div class="row" style="text-align:right; font-size: 17pt;">
-                                                            <div class="col-12">
-                                                                <button class="btn btn-primary">Guardar ventas</button>
-                                                            </div>
-                                                        </div>
-
-                                                </div>
-                                                
-                                               
-                                            </form>
-                                        </div>
-                                    </div>
+                                <div class="card-body">
+                                    <button class="btn btn-default">Clientes</button>
+                                    <button class="btn btn-default">Ventas</button>
+                                    <button class="btn btn-default">Productoas</button>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -300,6 +213,10 @@
                     </div>
                     <!-- /.row -->
                 </div><!-- /.container-fluid -->
+                <div id="hoja-informes" class="m-3 p-2">
+                    Aquí saldrán tus informes
+                </div>
+
             </section>
             <!-- /.content -->
         </div>
@@ -335,7 +252,7 @@
     <!-- page script -->
     <script src="../../plugins/toastr/toastr.min.js"></script>
     <script src="../../build/js/ConexionServ.js"></script>
-    <script src="ventas.js"></script>
+    <script src="informes.js"></script>
 </body>
 
 </html>
