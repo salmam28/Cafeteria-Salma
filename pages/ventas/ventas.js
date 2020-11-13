@@ -157,35 +157,37 @@ $(document).ready(function () {
     productosSeleccionados = restantes;
     llenarListaProductos();
   })
-
+  $('#dineroEntregado').on('input', function () {
+    const valor = $('#dineroEntregado').val();
+    $('#dineroDevuelta').html(valor - totalPagar);
+  })
 
   $('#formbuscarclientes').submit(function (e) {
 
-    const valor = $('#dineroEntregado').val();
-    $('#dineroDevuelta').html(valor - totalPagar);
     const USER = JSON.parse(localStorage.usuario);
     const f = new Date().toISOString();
     const idUsu = USER.rowid;
+    const desc = $('#descripcion').val();
+    const idCliente = 1;
+    sql = "INSERT INTO ventas(usuario_id,fecha,descripcion,cliente_id) VALUES(?,?,?,?)";
 
-    sql = "INSERT INTO ventas(usuario_id,fecha) VALUES(?,?)";
-
-    window.query(sql, [idUsu, f]).then(function (result) {
-      codiVenta = result.insertId;
+    window.query(sql, [idUsu, f, desc, idCliente]).then(function (result) {
+      let codiVenta = result.insertId;
 
       for (let i = 0; i < productosSeleccionados.length; i++) {
         const prod = productosSeleccionados[i].producto;
         crearDetalle(prod.rowid, prod.cantidad, prod.precio);
       }
-      function crearDetalle(prodId,prodCant,prodPrecio) {
+      function crearDetalle(prodId, prodCant, prodPrecio) {
         sql = "INSERT INTO venta_detalle(venta_id,producto_id,cantidad,precio) VALUES(?,?,?,?)";
 
-        window.query(sql, [codiVenta, prodId,prodCant,prodPrecio]).then(function (result) {
-          
-        },function () {
+        window.query(sql, [codiVenta, prodId, prodCant, prodPrecio]).then(function (result) {
+
+        }, function () {
           toastr.error('Error al agregar producto a la venta');
         });
-      } 
-      toastr.success('VEnta creada con éxito');
+      }
+      toastr.success('Venta creada con éxito');
       productosSeleccionados = [];
       llenarListaProductos();
       $('#buscarNombre input').val('');
@@ -194,9 +196,78 @@ $(document).ready(function () {
         toastr.error('No se pudo crear venta');
       }
 
-    ); 
-
-
+    );
     e.preventDefault();
   })
-});
+  $('#modalVentasCliente').on('shown.bs.modal', function () {
+    $("#modalVentas").html('');
+
+    idUsu = 1;
+    sql = "SELECT rowid, * FROM clientes WHERE rowid=?";
+
+    window.query(sql, [idUsu]).then(function (result) {
+      let cliente = result[0];
+      $('#modalVentasCliente .modal-title').html(cliente.nombres + ' ' + cliente.apellidos);
+
+      sql = "SELECT rowid, * FROM ventas WHERE cliente_id=?";
+
+      window.query(sql, [idUsu]).then(function (result) {
+
+        function traerDetalle(venta, venta_id) {
+          let sql = "SELECT d.rowid, d.*, p.rowid, p.* FROM venta_detalle d INNER JOIN productos p ON p.rowid=d.producto_id WHERE venta_id=?";
+            window.query(sql, [venta_id]).then(function (result) {
+            venta.detalle = result;
+          })//select detalle_ventas
+        }
+
+        for (let i = 0; i < result.length; i++) {
+          const venta = result[i];
+
+          traerDetalle(venta, venta.rowid);
+          
+        }//for ventas
+
+        for (let i = 0; i < result.length; i++) {
+          const venta = result[i];
+          venta.fecha = new Date(venta.fecha);
+          $('#modalVentas').append(`
+            <div class='row'>
+              <div class='col'>
+                ${venta.fecha.toLocaleDateString()} ${venta.fecha.toTimeString().substring(0,5)}
+                <div class='row'>
+                  <div class='col'id="modalDetalle-${venta.rowid}">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>`);
+        }
+        setTimeout( () => {
+          console.log(result);
+          for (let i = 0; i < result.length; i++) {
+            const venta = result[i];
+              
+            for (let j = 0; j < venta.detalle.length; j++) {
+              const detalle = venta.detalle[j];
+
+              $("#modalDetalle-" + venta.rowid).append(`
+              <div class='row'>
+                <div class='col ml-2'>
+                  ${detalle.nombre}
+                </div>
+                <div class='col'>
+                  cant: ${detalle.cantidad}
+                </div>
+                <div class='col'>
+                  $${detalle.precio}
+                </div>
+              </div>
+                `);
+            }
+          }
+        },1000)
+      });
+    })//select ventas 
+  })//select cliente
+})
+ 
