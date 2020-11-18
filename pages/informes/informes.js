@@ -207,7 +207,7 @@ $(document).ready(function () {
     window.query(sql, []).then(function (result) {
       console.log(result);
       $("#hoja-informes").html(`
-            <h1 class="text-center text-bold">Todos los clientes</h1>
+            <h1 class="text-center text-bold">Todas las ventas</h1>
             <div class="row">
               <div class="col">
                 <table class="table table-bordered" id="tabla-contenido-informe">

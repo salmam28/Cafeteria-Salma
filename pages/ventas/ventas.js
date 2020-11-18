@@ -84,6 +84,7 @@ $(document).ready(function () {
 
   function llenarListaProductos() {
     totalPagar = 0;
+    console.log(productosSeleccionados);
     $('#ListaProductosSeleccionados').html('');
     for (let i = 0; i < productosSeleccionados.length; i++) {
       const produc = productosSeleccionados[i].producto;
